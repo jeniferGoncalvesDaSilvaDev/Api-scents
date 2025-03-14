@@ -90,7 +90,7 @@ templates = Jinja2Templates(directory="templates")
 os.makedirs("static", exist_ok=True)
 
 # Montar diretório estático
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/front_scents", StaticFiles(directory="front_scents"), name="static")
 
 # Rota para documentação da API
 @app.get(
