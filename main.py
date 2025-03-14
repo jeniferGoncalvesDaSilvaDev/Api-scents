@@ -14,6 +14,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator, EmailStr
 from passlib.context import CryptContext
 
+@app.get("/web", response_class=HTMLResponse)
+async def web_view():
+    with open("front_scents/index.html") as f:
+        return HTMLResponse(content=f.read())
+
 app = FastAPI(
     title="Scents API",
     description="API para envio e processamento de anúncios com Scents",
@@ -31,10 +36,6 @@ app = FastAPI(
 # Montar arquivos estáticos
 app.mount("/static", StaticFiles(directory="front_scents"), name="static")
 
-@app.get("/web", response_class=HTMLResponse)
-async def web_view():
-    with open("front_scents/index.html") as f:
-        return HTMLResponse(content=f.read())
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
