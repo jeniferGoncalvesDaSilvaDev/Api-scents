@@ -18,6 +18,10 @@ deploymentTarget = "cloudrun"
 localPort = 3004
 externalPort = 80
 
+[[ports]]
+localPort = 3005
+externalPort = 3000
+
 [workflows]
 runButton = "Run API"
 
