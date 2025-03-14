@@ -1,4 +1,11 @@
 from fastapi import FastAPI, UploadFile, File, Depends, HTTPException, Path, Request
+from sqlalchemy.orm import Session
+from database import get_db, engine
+import models
+import datetime
+
+# Criar tabelas
+models.Base.metadata.create_all(bind=engine)
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
