@@ -28,13 +28,13 @@ app = FastAPI(
     swagger_ui_parameters={"persistAuthorization": True}
 )
 
-@app.get("/web", response_class=HTMLResponse)
+# Montar arquivos estáticos
+app.mount("/static", StaticFiles(directory="front_scents"), name="frontend")
+
+@app.get("/", response_class=HTMLResponse)
 async def web_view():
     with open("front_scents/index.html") as f:
         return HTMLResponse(content=f.read())
-
-# Montar arquivos estáticos
-app.mount("/", StaticFiles(directory="front_scents"), name="frontend")
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
