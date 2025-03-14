@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ api_title }} - Documentação</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ api_title }} v{{ api_version }}</h1>
+            <p>Documentação completa da API</p>
+        </header>
+
+        <section class="method-card">
+            <h2>Autenticação</h2>
+            <p>A API utiliza autenticação JWT (JSON Web Token).</p>
+            <div class="example-flow">
+                <div class="flow-step">
+                    <h3>1. Registro</h3>
+                    <code>POST /register</code>
+                    <p>Registre um novo usuário com username e senha.</p>
+                </div>
+                <div class="flow-step">
+                    <h3>2. Login</h3>
+                    <code>POST /login</code>
+                    <p>Faça login para obter um token JWT.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="method-card">
+            <h2>Anúncios</h2>
+            <div class="example-flow">
+                <div class="flow-step">
+                    <h3>1. Upload</h3>
+                    <code>POST /upload</code>
+                    <p>Envie arquivos MP3/MP4 (máx. 50MB)</p>
+                </div>
+                <div class="flow-step">
+                    <h3>2. Aplicar Scents</h3>
+                    <code>POST /apply-scents/{ad_id}</code>
+                    <p>Aplique a tecnologia Scents ao anúncio</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="method-card">
+            <h2>Visualização e Estatísticas</h2>
+            <div class="example-flow">
+                <div class="flow-step">
+                    <h3>Visualizar Anúncio</h3>
+                    <code>GET /ad/{ad_id}</code>
+                    <p>Obtenha informações e visualize um anúncio</p>
+                </div>
+                <div class="flow-step">
+                    <h3>Estatísticas</h3>
+                    <code>GET /stats/{ad_id}</code>
+                    <p>Consulte estatísticas de visualização</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
