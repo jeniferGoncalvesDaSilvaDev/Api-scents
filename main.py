@@ -34,7 +34,7 @@ async def web_view():
         return HTMLResponse(content=f.read())
 
 # Montar arquivos estáticos
-app.mount("/static", StaticFiles(directory="front_scents"), name="static")
+app.mount("/", StaticFiles(directory="front_scents"), name="frontend")
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse

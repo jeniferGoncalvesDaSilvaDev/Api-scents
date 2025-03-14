@@ -1,5 +1,5 @@
 
-const API_URL = 'http://0.0.0.0:3005';
+const API_URL = '';
 let token = '';
 
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
