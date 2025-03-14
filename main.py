@@ -549,4 +549,4 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Inicializar o servidor
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=3004, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=3005, log_level="info")
