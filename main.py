@@ -14,11 +14,6 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator, EmailStr
 from passlib.context import CryptContext
 
-@app.get("/web", response_class=HTMLResponse)
-async def web_view():
-    with open("front_scents/index.html") as f:
-        return HTMLResponse(content=f.read())
-
 app = FastAPI(
     title="Scents API",
     description="API para envio e processamento de anúncios com Scents",
@@ -32,6 +27,11 @@ app = FastAPI(
     ],
     swagger_ui_parameters={"persistAuthorization": True}
 )
+
+@app.get("/web", response_class=HTMLResponse)
+async def web_view():
+    with open("front_scents/index.html") as f:
+        return HTMLResponse(content=f.read())
 
 # Montar arquivos estáticos
 app.mount("/static", StaticFiles(directory="front_scents"), name="static")
@@ -85,19 +85,6 @@ import os
 os.makedirs("templates", exist_ok=True)
 templates = Jinja2Templates(directory="templates")
 
-app = FastAPI(
-    title="Scents API",
-    description="API para envio e processamento de anúncios com Scents",
-    version="1.1.0",
-    openapi_tags=[
-        {"name": "Autenticação", "description": "Endpoints para gerenciamento de usuários e autenticação"},
-        {"name": "Anúncios", "description": "Endpoints para upload e processamento de anúncios"},
-        {"name": "Visualização", "description": "Endpoints para visualização de anúncios"},
-        {"name": "Estatísticas", "description": "Endpoints para visualização de estatísticas de anúncios"},
-        {"name": "Geral", "description": "Endpoints gerais e informações da API"}
-    ],
-    swagger_ui_parameters={"persistAuthorization": True}
-)
 
 # Criar diretório para arquivos estáticos
 os.makedirs("static", exist_ok=True)
