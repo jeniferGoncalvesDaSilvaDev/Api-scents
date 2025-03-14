@@ -6,7 +6,7 @@ import time
 import json
 
 # Configurações
-BASE_URL = os.getenv("API_BASE_URL", "http://0.0.0.0:3004")
+BASE_URL = os.getenv("BASE_URL","https://api-scents.onrender.com")
 USERNAME = os.getenv("API_USERNAME", "jenifer")
 PASSWORD = os.getenv("API_PASSWORD", "kjcd5588J#")
 FILE_PATH = "A5CBR.mp3"  # Arquivo de teste
