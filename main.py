@@ -7,6 +7,27 @@ import datetime
 # Criar tabelas
 models.Base.metadata.create_all(bind=engine)
 
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, Field, field_validator, EmailStr
+from passlib.context import CryptContext
+
+app = FastAPI(
+    title="Scents API",
+    description="API para envio e processamento de anúncios com Scents",
+    version="1.1.0",
+    openapi_tags=[
+        {"name": "Autenticação", "description": "Endpoints para gerenciamento de usuários e autenticação"},
+        {"name": "Anúncios", "description": "Endpoints para upload e processamento de anúncios"},
+        {"name": "Visualização", "description": "Endpoints para visualização de anúncios"},
+        {"name": "Estatísticas", "description": "Endpoints para visualização de estatísticas de anúncios"},
+        {"name": "Geral", "description": "Endpoints gerais e informações da API"}
+    ],
+    swagger_ui_parameters={"persistAuthorization": True}
+)
+
 # Montar arquivos estáticos
 app.mount("/static", StaticFiles(directory="front_scents"), name="static")
 
@@ -14,7 +35,6 @@ app.mount("/static", StaticFiles(directory="front_scents"), name="static")
 async def web_view():
     with open("front_scents/index.html") as f:
         return HTMLResponse(content=f.read())
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
